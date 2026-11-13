@@ -9,18 +9,45 @@
       margin: 0;
       background-color: #111;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      gap: 20px;
+      font-family: sans-serif;
     }
     img {
-      max-width: 95%;
-      max-height: 95vh;
+      max-width: 90%;
+      max-height: 75vh;
       border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ffb703;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <img src="https://cataas.com" alt="Gato aleatorio">
+  <img id="foto-gato" src="" alt="Cargando gato...">
+  <button onclick="cargarGato()">Ver otro gato 🐱</button>
+
+  <script>
+    function cargarGato() {
+      fetch("https://thecatapi.com")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("foto-gato").src = data[0].url;
+        });
+    }
+    cargarGato();
+  </script>
 </body>
 </html>
+
